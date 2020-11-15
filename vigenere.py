@@ -15,11 +15,13 @@ def form_alph():
 def enchipher(text, key):
     enchipher_text = ''
     alph = form_alph()
-    for i, sym in enumerate(text):
+    i = 0
+    for sym in text:
         # если символ есть в алфавите - шифруем по Виженеру
         if sym in alph:
-            en_sym = ((ord(sym) + ord(key[i % len(key)]) - 2080)) % 63 + 1040
+            en_sym = ((ord(sym) + ord(key[i % len(key)]) - 2080)) % 64 + 1040
             en_sym = chr(en_sym)
+            i += 1
         # иначе записываем символ без изменений
         else:
             en_sym = sym
@@ -31,11 +33,13 @@ def enchipher(text, key):
 def dechipher(text, key):
     dechipher_text = ''
     alph = form_alph()
-    for i, sym in enumerate(text):
+    i = 0
+    for sym in text:
         # если символ есть в алфавите - дешифруем по Виженеру
         if sym in alph:
-            de_sym = ((ord(sym) - ord(key[i % len(key)]) + 63)) % 63 + 1040
+            de_sym = ((ord(sym) - ord(key[i % len(key)]) + 64)) % 64 + 1040
             de_sym = chr(de_sym)
+            i += 1
         # иначе записываем символ без изменений
         else:
             de_sym = sym
